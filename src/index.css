@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --text-primary: #1F2937;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  
+  --bg-app: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-navbar: #FFFFFF;
+  --bg-sidebar: #FFFFFF;
+  --border-color: #E5E7EB;
+  
+  --primary-color: #7C3AED;
+  --success-color: #22C55E;
+  --warning-color: #F59E0B;
+  --danger-color: #EF4444;
+}
+
+.dark {
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  
+  --bg-app: #0F172A;
+  --bg-card: #1E293B;
+  --bg-navbar: #111827;
+  --bg-sidebar: #111827;
+  --border-color: #475569;
+}
+
+@theme {
+  --color-primary: var(--primary-color);
+  --color-success: var(--success-color);
+  --color-warning: var(--warning-color);
+  --color-danger: var(--danger-color);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-bg-app: var(--bg-app);
+  --color-bg-card: var(--bg-card);
+  --color-bg-navbar: var(--bg-navbar);
+  --color-bg-sidebar: var(--bg-sidebar);
+  --color-border-color: var(--border-color);
+
+  --font-sans: 'Outfit', 'Inter', sans-serif;
+}
+
+@utility glass-nav {
+  backdrop-filter: blur(12px);
+  background-color: var(--bg-navbar);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@utility glass-card {
+  backdrop-filter: blur(12px);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@utility glass-modal {
+  backdrop-filter: blur(24px);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+@utility glass-input {
+  background-color: var(--bg-app);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary-color);
+  border-color: transparent;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    font-family: 'Outfit', 'Inter', sans-serif;
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: 200ms;
+    overflow-x: hidden;
+  }
+
+  /* Table styling */
+  table {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+  }
+  
+  thead tr {
+    background-color: var(--bg-app) !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+  }
+
+  th {
+    color: var(--text-secondary) !important;
+    font-weight: 700 !important;
+  }
+  
+  tbody tr {
+    background-color: transparent !important;
+    color: var(--text-primary) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    transition: background-color 150ms ease;
+  }
+  
+  tbody tr:hover {
+    background-color: var(--bg-app) !important;
+    opacity: 0.95;
+  }
+
+  .dark tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+  }
+
+  /* Forms and Inputs */
+  input, select, textarea {
+    background-color: var(--bg-app) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.8;
+  }
+
+  select option {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+  }
+
+  /* Calendar aspect ratio grids */
+  .dark .aspect-square {
+    border-color: var(--border-color) !important;
+  }
+
+  /* Sidebar and Navbar specific background overrides */
+  aside {
+    background-color: var(--bg-sidebar) !important;
+    border-right-color: var(--border-color) !important;
+  }
+
+  header {
+    background-color: var(--bg-navbar) !important;
+    border-bottom-color: var(--border-color) !important;
+  }
+}
+
+/* Hide scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Scrollbar for desktop scroll */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(203, 213, 225);
+  border-radius: 9999px;
+  transition-property: color, background-color;
+  transition-duration: 200ms;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(148, 163, 184);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: rgb(51, 65, 85);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(71, 85, 105);
+}
